@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace AITDNFive
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            WriteAsBytes(1000);
+        }
+
+        public static void WriteAsBytes(int value)
+        {
+            var bytes = BitConverter.GetBytes(value);
+
+            foreach (var b in bytes)
+            {
+                Console.Write("0x{0:X2} ", b);
+            }
         }
     }
 }
