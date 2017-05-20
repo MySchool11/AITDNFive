@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Security.Claims;
 using System.Text;
+using System.Threading;
 
 namespace AITDNFive
 {
@@ -10,7 +10,31 @@ namespace AITDNFive
         {
             WriteAsBytes(1000);                                 // Calls the WriteAsBytes() method passing in the integer 1000
             WriteAsBytes("string");                             // Calls the overloaded WriteAsBytes() method passing in the string "string"
-            WriteAsBytes(32.56f);                                // Calls the overloaded WriteAsBytes() method passing in the floating point number 32.56
+            WriteAsBytes(32.56f);                               // Calls the overloaded WriteAsBytes() method passing in the floating point number 32.56
+
+            Console.WriteLine("Press a key to continue...");    // Pause before next operation which will remove these results from the readable area of the console.
+            Console.ReadKey();
+            Console.Write("\n");                                // Create a newline after the key press to prevent next line being indented by one space (the keypress).
+
+            // Methods also help with the DRY principle (Do not Repeat Yourself) by allowing an easy way to run the same code over and over again without rewriting it every time.
+            // The opposite of DRY is WET (Write Everything Twice). Imagine how much code would be needed for the next five lines of code without methods.
+
+            for (var i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Iteration " + (i + 1) + " = ");
+                WriteAsBytes((i * 100) + 6);
+                Thread.Sleep(400);                              // Create a 400 millisecond delay between iterations to make it easier to follow on console output.
+            }
+
+            // The answer is 10 x 11 or 110 lines. So would you rather write 110 lines or 5? No brainer, huh?
+
+            Console.Write("\n");                                // Put a space between the last output of the loop and the next line of text for readability.
+
+            var answer = WriteAsBytesReturn(0xba);
+            Console.WriteLine("answer contains: 0x{0:X2} ", answer);
+
+            // This method is fairly pointless as it does not achieve much, it passes a byte to a method that reads the byte, adds it to itself, and returns it.
+            // It is purely for demonstrative purposes only as this could be achieved with a single line of code and does not really warrant an entire function.
 
             Console.WriteLine("Press any key to exit...");      // These two lines diplay a message and await a keypress to end the program
             Console.ReadKey();
@@ -65,6 +89,23 @@ namespace AITDNFive
                 Console.Write("0x{0:X2} ", b);
             }
             Console.Write("\n");
+        }
+
+        // Because the signature of a method does not include the return type, if we want a method that returns the value, we need to write a new function with a differing signature
+        // public static byte[] WriteAsBytes(byte value)        WILL NOT compile, so
+
+        public static byte WriteAsBytesReturn(byte value)       // To use this method we will have to pass the result into a variable of the type byte, as this is what it returns
+        {
+            var bytes = BitConverter.GetBytes(value);
+            byte byteTotal = 0x00;
+
+            foreach (var b in bytes)
+            {
+                byteTotal += b;
+            }
+
+            byteTotal += bytes[0];
+            return byteTotal;
         }
     }
 }
