@@ -13,6 +13,17 @@ namespace AITDNFive
             Console.ReadKey();
         }
 
+        /*
+         * Every method has four key elements;
+         * 1) An access modifier: This determines the scope of the variable (which code can access it)
+         * 2) A return type: Every method returns a type even if that is void (a fancy way of saying nothing)
+         * 3) Zero or more parameters: Every method must be marked as not taking a parameter, Method(), or list the paramaters it takes, Method(int something, string somethingElse)
+         * 4) A signature: Each method generates a signature and this comprises everything after the return type. This aids overloading (having multiple method with the same name that take differing parameters) for example;
+         * public static void InputANewCustomer(int age) --> singature is InputANewCustomer(int age)
+         * public static void InputANewCustomer(int age, string name) --> signature is InputANewCustomer(int age, string name)
+         * public static void InputANewCustomer(string name) --> signature is InputANewCustomer(string name)
+         */
+
         public static void WriteAsBytes(int value)              // Declares a method of type void (does not return anything) which is public (accessible by any code), static (does not need instantiation with the new keyword) and expects an integer passed to it
         {
             var bytes = BitConverter.GetBytes(value);           // Creates a bytes[] array and initialises it with the bytes making up the passed numer via the BitConverter.GetBytes() method
