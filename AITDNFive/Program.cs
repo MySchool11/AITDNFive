@@ -9,7 +9,8 @@ namespace AITDNFive
         private static void Main(string[] args)
         {
             WriteAsBytes(1000);                                 // Calls the WriteAsBytes() method passing in the integer 1000
-            WriteAsBytes("string");                             // Calls the overloaded WriteAsBytes() methods passing in the string "string"
+            WriteAsBytes("string");                             // Calls the overloaded WriteAsBytes() method passing in the string "string"
+            WriteAsBytes(32.56f);                                // Calls the overloaded WriteAsBytes() method passing in the floating point number 32.56
 
             Console.WriteLine("Press any key to exit...");      // These two lines diplay a message and await a keypress to end the program
             Console.ReadKey();
@@ -35,7 +36,7 @@ namespace AITDNFive
             Console.Write("number as hex (bytes): ");           // Writes out a statement ready to show the converted numbers
             foreach (var b in bytes)                            // Iterates through the bytes[] array and outputs each value held
             {           
-                Console.Write("0x{0:X2} ", b);                  // Writes out to the console the current array value (b) to two places (X2)
+                Console.Write("0x{0:X2} ", b);                  // Writes out to the console the current array value (b) to hexidecimal (X) with two places (2)
             }
             Console.Write("\n");                                // Writes a new line after the output from the array
         }
@@ -43,6 +44,19 @@ namespace AITDNFive
         public static void WriteAsBytes(string value)           // Overloaded method WriteAsBytes that takes a string instead of an integer
         {
             var bytes = Encoding.ASCII.GetBytes(value);         // BitConverter.GetBytes() handles numerical values to Encoding.ASCII.GetBytes() must be used for a string instead
+
+            Console.Write("original string: {0}\n", value);     // The next six lines do exactly the same as the integer accepting version of the method
+            Console.Write("string as hex (bytes): ");
+            foreach (var b in bytes)
+            {
+                Console.Write("0x{0:X2} ", b);
+            }
+            Console.Write("\n");
+        }
+
+        public static void WriteAsBytes(float value)
+        {
+            var bytes = BitConverter.GetBytes(value);           // Can use the BitConverter.GetBytes() method here as it accepts number of all type (except decimal)
 
             Console.Write("original string: {0}\n", value);     // The next six lines do exactly the same as the integer accepting version of the method
             Console.Write("string as hex (bytes): ");
