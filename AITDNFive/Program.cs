@@ -91,6 +91,23 @@ namespace AITDNFive
             Console.Write("\n");
         }
 
+        // If you look we are breaking the DRY principle because the last seven lines of all three methods are identical. To alleviate this we can strip this identical code and place it
+        // within its own method, then call that method in its place, like so;
+        /*
+         * public static void WriteByteArray(byte[] bytes)
+         * {
+         *     Console.Write("original string: {0}\n", value);
+               Console.Write("string as hex (bytes): ");
+               foreach (var b in bytes)
+               {
+                   Console.Write("0x{0:X2} ", b);
+               }
+               Console.Write("\n");
+         * }
+         */
+         // We would then replace the same code in each method with the call    WriteByteArray(bytes)   this would reduce code repetition. The process of applying the DRY principle
+         // is called refactoring.
+
         // Because the signature of a method does not include the return type, if we want a method that returns the value, we need to write a new function with a differing signature
         // public static byte[] WriteAsBytes(byte value)        WILL NOT compile, so
 
