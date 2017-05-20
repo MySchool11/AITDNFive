@@ -106,7 +106,7 @@ namespace AITDNFive
          * }
          */
          // We would then replace the same code in each method with the call    WriteByteArray(bytes)   this would reduce code repetition. The process of applying the DRY principle
-         // is called refactoring.
+         // is part of a proces called refactoring.
 
         // Because the signature of a method does not include the return type, if we want a method that returns the value, we need to write a new function with a differing signature
         // public static byte[] WriteAsBytes(byte value)        WILL NOT compile, so
