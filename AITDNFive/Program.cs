@@ -124,5 +124,36 @@ namespace AITDNFive
             byteTotal += bytes[0];
             return byteTotal;
         }
+
+        // Another way of overloading methods is to add more parameters, for example;
+
+        public static void ExampleMethod(int input)
+        {
+
+        }
+
+        // is different to 
+
+        public static void ExampleMethod(int input, string name)
+        {
+
+        }
+
+        // Lasty we will discuss the       params       keyword. This allows an unknown amount of arguments to be passed to a method from none upwards. Passing no arguments will return a 0.
+
+        public static void ParamsMethod(params string[] names)
+        {
+            foreach (var name in names)
+            {
+                Console.WriteLine(name);
+            }
+        }
+
+        // Because of the params method we can call ParamsMethod() in the following ways;
+        // ParamsMethod();
+        // ParamsMethod("James");
+        // ParamsMethod("James", "Simon", "Peter", "Paul");
+        // ParamsMethos("James", "Simon", "Peter", "Paul", "Michael", "Mungo", "Petre", "Simone", "Andre", "Tom", "Gabby", "Recardo");
+        // The reason a params parameter must be declared as an array [] is because the passed arguments are stored in the form of an array
     }
 }
