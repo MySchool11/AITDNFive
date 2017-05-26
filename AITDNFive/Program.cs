@@ -6,6 +6,18 @@ namespace AITDNFive
 {
     internal class Program
     {
+
+        /// <summary>
+        /// This program discusses methods.
+        /// </summary>
+        /// <author>
+        /// Samuel Bancroft (c) 2017
+        /// </author>
+        /// <code>
+        /// Made up of one main file
+        /// Program.cs => the main file
+        /// </code>
+
         private static void Main(string[] args)
         {
             WriteAsBytes(1000);                                 // Calls the WriteAsBytes() method passing in the integer 1000
